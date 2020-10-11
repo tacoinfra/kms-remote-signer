@@ -8,8 +8,7 @@ export enum OperationType {
 /**
  * A parsed operation.
  */
-// TODO(keefertaylor): `Operation` is probably a better identifier.
-export default interface ParsedOperation {
+export default interface Operation {
     // The type of operation.
     operationType: OperationType
 
