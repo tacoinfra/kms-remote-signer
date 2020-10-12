@@ -1,12 +1,21 @@
-import LockService from './lock-service'
-import Parser from './parser'
+import { CodingUtils } from '@tacoinfra/tezos-core'
 
+/** Signs payloads if they meet criteria. */
 export default class Signer {
-    public constructor(
-        private readonly lockService: LockService,
-    ) { }
+  /**
+   * Sign the given payload if it passes filter functions.
+   * 
+   * @param payload The payload to sign, as hex.
+   * @returns A base58check encoded signature.
+   */
+  public sign(payload: string): string {
+    console.log(`Received request to sign ${payload}`)
 
-    public sign(bytes: Uint8Array) {
-        console.log("Received request.")
+    if (CodingUtils.isHex(payload)) {
+      throw new Error("Request was not hex.")
     }
+    const _bytes = CodingUtils.hexToBytes(payload)
+
+    return 'edsig'
+  }
 }
