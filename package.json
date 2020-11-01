@@ -21,7 +21,8 @@
   "license": "MIT",
   "dependencies": {
     "@tacoinfra/tezos-core": "^1.0.1",
-    "@types/node": "^14.11.8"
+    "@types/node": "^14.11.8",
+    "aws-sdk": "^2.771.0"
   },
   "bugs": {
     "url": "https://github.com/tacoinfra/tezos-kms-remote-signer/issues"
