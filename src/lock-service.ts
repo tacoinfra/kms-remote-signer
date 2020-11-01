@@ -1,5 +1,5 @@
 import { DynamoDB } from 'aws-sdk'
-import Operation, { OperationType } from 'operation'
+import Operation, { OperationType } from './operation'
 
 /** Prefixes for operation types */
 const BLOCK_LOCK_PREFIX = 'BLOCK_'

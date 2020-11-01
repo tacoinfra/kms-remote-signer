@@ -1,0 +1,46 @@
+# Serverless Config
+service:
+  name: tezos-remote-signer
+
+# Plugins
+plugins:
+  - serverless-webpack
+
+# Provider
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 256
+  timeout: 30
+
+# Functions
+functions:
+  sign:
+    handler:
+      handler.sign
+    events:
+      - http:
+          method: post
+          path: keys/{keyId}
+          request:
+            parameters:
+              paths:
+                keyId: true
+  getKey: 
+    handler:
+      handler.getKey           
+    events:
+      - http:
+          method: get
+          path: keys/{keyId}
+          request:
+            parameters:
+              paths:
+                keyId: true
+  dumpKeys: 
+    handler:
+      handler.dumpKeys           
+    events:
+      - http:
+          method: get
+          path: authorized_keys
