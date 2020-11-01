@@ -1,7 +1,6 @@
 import { CodingUtils } from '@tacoinfra/tezos-core'
 import Parser from './parser'
 import KeyStore from './keystore'
-import Filter from './filters'
 import { OperationType } from 'operation'
 import ClassLockService from 'lock-service'
 
@@ -11,9 +10,9 @@ export default class Signer {
    * Construct a new Signer.
    *
    * @param keyStore An object which will store keys to sign.
-   * @param filters An array of filters. One filter in the array must evaluate to true in order for signing to happen.
+   * @param lockService An object that can aquire a lock for an operation.
    */
-  public constructor(private readonly keyStore: KeyStore, private readonly lockService: ClassLockService, private readonly filters: Array<Filter>) { }
+  public constructor(private readonly keyStore: KeyStore, private readonly lockService: ClassLockService) { }
 
   /**
    * Sign the given payload if it passes filter functions.
