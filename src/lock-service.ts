@@ -1,9 +1,6 @@
 import { DynamoDB } from 'aws-sdk'
 import Operation, { OperationType } from 'operation'
 
-/** DynamoDB table name */
-const TABLE_NAME = "tezos_signer"
-
 /** Prefixes for operation types */
 const BLOCK_LOCK_PREFIX = 'BLOCK_'
 const ENDORSEMENT_LOCK_PREFIX = 'ENDORSEMENT_'
@@ -15,10 +12,10 @@ const ENDORSEMENT_LOCK_PREFIX = 'ENDORSEMENT_'
  * Endorsement operations get the form of `ENDORSEMENT_<CHAIN ID>_<HEIGHT>
  */
 // TODO(keefertaylor): Migrate this to be behind an interface
-export default class ClassLockService {
+export default class LockService {
   private readonly documentClient: DynamoDB.DocumentClient
 
-  public constructor(region: string, endpoint: string) {
+  public constructor(region: string, endpoint: string, private readonly tableName: string) {
     this.documentClient = new DynamoDB.DocumentClient({
       region,
       endpoint
@@ -64,7 +61,7 @@ export default class ClassLockService {
       Key: {
         type: key
       },
-      TableName: TABLE_NAME,
+      TableName: this.tableName,
       UpdateExpression: "set #level = :level"
     };
 
