@@ -1,3 +1,7 @@
-# Tezos KMS Signer
+# Remote signer using Amazon KMS backend
 
-Remote signing for Tezos Bakers on KMS
+This project was originally written for the Tezos Baking infrastructure but
+has not been used to do in that project.
+
+The purpose is to use the KMS keystore to sign baking and other requests.
+
